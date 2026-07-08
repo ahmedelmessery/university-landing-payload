@@ -16,6 +16,7 @@ import { News } from './collections/News'
 import { Partners } from './collections/Partners'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { getServerSideURL } from './utilities/getURL'
 import { Header } from './Header/config'
 import { Footer } from './Footer/config'
@@ -83,7 +84,16 @@ export default buildConfig({
   ],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer, LandingHero, CampusExperience, AdmissionSteps, ContactSection],
-  plugins,
+  plugins: [
+    ...plugins,
+    vercelBlobStorage({
+      enabled: !!process.env.BLOB_READ_WRITE_TOKEN,
+      collections: {
+        media: true,
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+    }),
+  ],
   secret: process.env.PAYLOAD_SECRET,
   sharp,
   typescript: {
