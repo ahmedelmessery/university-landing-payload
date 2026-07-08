@@ -173,18 +173,18 @@ export function NewsSlider({ news }: NewsSliderProps) {
             <button
               onClick={() => setIndex((p) => Math.max(0, p - 1))}
               disabled={index === 0}
-              className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:border-orange transition-colors disabled:opacity-30"
+              className="w-12 h-12 shrink-0 rounded-full border flex items-center justify-center transition-colors group bg-white border-[#E84925] text-[#E84925] hover:bg-[#E84925]/5 disabled:border-gray-400 disabled:text-gray-400 disabled:bg-transparent disabled:cursor-not-allowed"
               aria-label="Previous"
             >
-              <Image src="/images/prev.png" alt="prev" width={16} height={16} />
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
             </button>
             <button
               onClick={() => setIndex((p) => Math.min(maxIndex, p + 1))}
               disabled={index >= maxIndex}
-              className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:border-orange transition-colors disabled:opacity-30"
+              className="w-12 h-12 shrink-0 rounded-full border flex items-center justify-center transition-colors group bg-white border-[#E84925] text-[#E84925] hover:bg-[#E84925]/5 disabled:border-gray-400 disabled:text-gray-400 disabled:bg-transparent disabled:cursor-not-allowed"
               aria-label="Next"
             >
-              <Image src="/images/next.png" alt="next" width={16} height={16} />
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
             </button>
           </div>
 

@@ -127,57 +127,38 @@ export function TestimonialsSlider({ testimonials }: { testimonials?: any[] }) {
           </p>
         </div>
 
-        {/* Coverflow + Arrows Container */}
-        <div className="relative flex items-center justify-between mt-10 max-w-[1200px] mx-auto">
+        {/* Single Image + Outer Arrows Container */}
+        <div className="relative flex items-center justify-between mt-10 max-w-[1200px] mx-auto px-4">
           
           {/* Left Arrow */}
           <button
-            onClick={prev}
-            className="w-12 h-12 shrink-0 z-20 rounded-full border border-[#E84925] flex items-center justify-center hover:bg-[#E84925]/5 transition-colors group bg-white"
+            onClick={() => {}}
+            className="w-12 h-12 shrink-0 z-20 rounded-full border flex items-center justify-center transition-colors group bg-white border-[#E84925] text-[#E84925] hover:bg-[#E84925]/5"
             aria-label="Previous"
           >
-            <Image src="/images/prev.png" alt="prev" width={18} height={18} className="opacity-80 group-hover:opacity-100 transition-opacity" />
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
           </button>
 
-          {/* Coverflow */}
-          <div
-            className="relative flex-1 flex items-center justify-center"
-            style={{ height: CARD_H + 40, perspective: 1800 }}
-          >
-            {items.map((item: any, i: number) => (
-              <div
-                key={item.id || i}
-                className="absolute transition-all ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer"
-                style={{
-                  ...getStyle(i),
-                  width: CARD_W,
-                  height: CARD_H,
-                  transformStyle: 'preserve-3d',
-                  transitionDuration: '700ms',
-                }}
-                onClick={() => setCenter(i)}
-              >
-                {/* Direct Image Card */}
-                <div className="relative w-full h-full bg-transparent drop-shadow-xl overflow-hidden">
-                  <Image
-                    src={item.image || item.avatar?.url || '/images/cards.png'}
-                    alt={item.name || item.studentName || 'Testimonial'}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-contain"
-                  />
-                </div>
-              </div>
-            ))}
+          {/* Cards Cluster Image (Scaled to crop out the small arrows) */}
+          <div className="relative flex-1 flex items-center justify-center px-2 md:px-8">
+            <div className="relative w-full max-w-[900px] h-[400px] sm:h-[500px] md:h-[650px] overflow-hidden">
+              <Image
+                src="/images/cards.png"
+                alt="Success Career Journeys"
+                fill
+                sizes="(max-width: 1200px) 100vw, 900px"
+                className="object-contain scale-[1.15] md:scale-[1.2]"
+              />
+            </div>
           </div>
 
           {/* Right Arrow */}
           <button
-            onClick={next}
-            className="w-12 h-12 shrink-0 z-20 rounded-full border border-[#E84925] flex items-center justify-center hover:bg-[#E84925]/5 transition-colors group bg-white"
+            onClick={() => {}}
+            className="w-12 h-12 shrink-0 z-20 rounded-full border flex items-center justify-center transition-colors group bg-white border-[#E84925] text-[#E84925] hover:bg-[#E84925]/5"
             aria-label="Next"
           >
-            <Image src="/images/next.png" alt="next" width={18} height={18} className="opacity-80 group-hover:opacity-100 transition-opacity" />
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
           </button>
 
         </div>

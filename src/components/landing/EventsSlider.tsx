@@ -156,18 +156,18 @@ export function EventsSlider({ events }: EventsSliderProps) {
             <button
               onClick={() => setIndex((p) => Math.max(0, p - 1))}
               disabled={index === 0}
-              className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:border-[#E84925] transition-colors disabled:opacity-30 disabled:cursor-not-allowed group"
+              className="w-12 h-12 shrink-0 rounded-full border flex items-center justify-center transition-colors group bg-white border-[#E84925] text-[#E84925] hover:bg-[#E84925]/5 disabled:border-gray-400 disabled:text-gray-400 disabled:bg-transparent disabled:cursor-not-allowed"
               aria-label="Previous"
             >
-              <Image src="/images/prev.png" alt="prev" width={18} height={18} className="opacity-60 group-hover:opacity-100 transition-opacity" />
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
             </button>
             <button
               onClick={() => setIndex((p) => Math.min(items.length - (typeof window !== 'undefined' && window.innerWidth >= 768 ? 2 : 1), p + 1))}
               disabled={index >= items.length - (typeof window !== 'undefined' && window.innerWidth >= 768 ? 2 : 1)}
-              className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:border-[#E84925] transition-colors disabled:opacity-30 disabled:cursor-not-allowed group"
+              className="w-12 h-12 shrink-0 rounded-full border flex items-center justify-center transition-colors group bg-white border-[#E84925] text-[#E84925] hover:bg-[#E84925]/5 disabled:border-gray-400 disabled:text-gray-400 disabled:bg-transparent disabled:cursor-not-allowed"
               aria-label="Next"
             >
-              <Image src="/images/next.png" alt="next" width={18} height={18} className="opacity-60 group-hover:opacity-100 transition-opacity" />
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
             </button>
           </div>
 

@@ -8,6 +8,7 @@ const DEFAULT_MAJORS = [
   { id: '2', title: 'Engineering', programs: 9, image: '/images/slide image (2).png' },
   { id: '3', title: 'Psychology', programs: 3, image: '/images/slide image (3).png' },
   { id: '4', title: 'Business', programs: 6, image: '/images/slide imagee.png' },
+  { id: '5', title: 'Computer Science', programs: 5, image: '/images/slide image (5).png' },
 ]
 
 interface MajorsSliderProps {
@@ -17,11 +18,15 @@ interface MajorsSliderProps {
 export function MajorsSlider({ majors }: MajorsSliderProps) {
   const [index, setIndex] = useState(0)
   
-  // Force exactly 4 items and explicitly set the 4th image as requested, even if CMS sends more.
-  const rawItems = majors?.length ? majors : DEFAULT_MAJORS
-  const items = rawItems.slice(0, 4).map((major, i) => {
+  // Pad CMS data with defaults to ensure we always have 5 items
+  const providedItems = majors || []
+  const rawItems = providedItems.length >= 5
+    ? providedItems
+    : [...providedItems, ...DEFAULT_MAJORS.slice(providedItems.length)]
+
+  const items = rawItems.slice(0, 5).map((major, i) => {
     if (i === 3) {
-      return { ...major, image: '/images/slide imagee.png', icon: undefined }
+      return { ...major, image: major.image || '/images/slide imagee.png', icon: undefined }
     }
     return major
   })
@@ -182,18 +187,18 @@ export function MajorsSlider({ majors }: MajorsSliderProps) {
           <button
             onClick={() => setIndex((p) => Math.max(0, p - 1))}
             disabled={index === 0}
-            className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:border-[#E84925] transition-colors disabled:opacity-30 disabled:cursor-not-allowed group"
+            className="w-12 h-12 shrink-0 rounded-full border flex items-center justify-center transition-colors group bg-white border-[#E84925] text-[#E84925] hover:bg-[#E84925]/5 disabled:border-gray-400 disabled:text-gray-400 disabled:bg-transparent disabled:cursor-not-allowed"
             aria-label="Previous"
           >
-            <Image src="/images/prev.png" alt="prev" width={18} height={18} className="opacity-60 group-hover:opacity-100 transition-opacity" />
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
           </button>
           <button
             onClick={() => setIndex((p) => Math.min(maxIndex, p + 1))}
             disabled={index >= maxIndex}
-            className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:border-[#E84925] transition-colors disabled:opacity-30 disabled:cursor-not-allowed group"
+            className="w-12 h-12 shrink-0 rounded-full border flex items-center justify-center transition-colors group bg-white border-[#E84925] text-[#E84925] hover:bg-[#E84925]/5 disabled:border-gray-400 disabled:text-gray-400 disabled:bg-transparent disabled:cursor-not-allowed"
             aria-label="Next"
           >
-            <Image src="/images/next.png" alt="next" width={18} height={18} className="opacity-60 group-hover:opacity-100 transition-opacity" />
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
           </button>
         </div>
       </div>
