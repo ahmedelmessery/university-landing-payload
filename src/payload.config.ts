@@ -4,16 +4,25 @@ import path from 'path'
 import { buildConfig, PayloadRequest } from 'payload'
 import { fileURLToPath } from 'url'
 
-import { Categories } from './collections/Categories'
 import { Media } from './collections/Media'
+import { Users } from './collections/Users'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
-import { Users } from './collections/Users'
-import { Footer } from './Footer/config'
-import { Header } from './Header/config'
+import { Categories } from './collections/Categories'
+import { Majors } from './collections/Majors'
+import { Events } from './collections/Events'
+import { Testimonials } from './collections/Testimonials'
+import { News } from './collections/News'
+import { Partners } from './collections/Partners'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
+import { Header } from './Header/config'
+import { Footer } from './Footer/config'
+import { LandingHero } from './globals/LandingHero'
+import { CampusExperience } from './globals/CampusExperience'
+import { AdmissionSteps } from './globals/AdmissionSteps'
+import { ContactSection } from './globals/ContactSection'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -60,9 +69,20 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URL || '',
   }),
-  collections: [Pages, Posts, Media, Categories, Users],
+  collections: [
+    Pages,
+    Posts,
+    Categories,
+    Media,
+    Users,
+    Majors,
+    Events,
+    Testimonials,
+    News,
+    Partners,
+  ],
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [Header, Footer],
+  globals: [Header, Footer, LandingHero, CampusExperience, AdmissionSteps, ContactSection],
   plugins,
   secret: process.env.PAYLOAD_SECRET,
   sharp,

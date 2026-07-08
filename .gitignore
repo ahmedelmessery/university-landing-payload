@@ -1,22 +1,48 @@
-build
-dist / media
+# Dependencies
 node_modules
-.DS_Store
-.env
+.pnpm-debug.log
+
+# Build output
 .next
+build
+dist
+out
+
+# Environment
+.env
+.env.local
+.env.production.local
+
+# Payload
+/media
+public/media/
+
+# Next.js
 next-env.d.ts
 .vercel
 
-# Payload default media upload directory
-public/media/
+# OS
+.DS_Store
+Thumbs.db
 
-public/robots.txt
-public/sitemap*.xml
-
-
-# Playwright
-node_modules/
+# Testing
 /test-results/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+coverage
+
+# Sitemaps (generated)
+public/robots.txt
+public/sitemap*.xml
+
+# IDE
+.vscode/*
+!.vscode/settings.json
+.idea
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
