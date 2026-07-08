@@ -34,7 +34,7 @@ export default async function LandingPage() {
       <HeroSection data={data.hero} />
       <CampusExperienceSection data={data.campusExperience} />
       <UniversityPartnersSection partners={data.partners} />
-      <MarqueeSection partners={data.partners} />
+      <MarqueeSection />
       <MajorsSlider majors={data.majors} />
       <EventsSlider events={data.events} />
       <TestimonialsSlider testimonials={data.testimonials} />

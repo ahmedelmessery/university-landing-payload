@@ -57,6 +57,7 @@ async function seed() {
   console.log('Seeding Globals...')
   await payload.updateGlobal({
     slug: 'landing-hero',
+    context: { disableRevalidate: true },
     data: {
       headline: 'Your Gateway To Global Education',
       subheadline: 'Earn a globally recognized degree from top-ranked partnered universities on our state-of-the-art campus in Egypt.',
@@ -71,6 +72,7 @@ async function seed() {
 
   await payload.updateGlobal({
     slug: 'campus-experience',
+    context: { disableRevalidate: true },
     data: {
       sectionTitle: 'Experience a World-Class Campus',
       campusImage: campusImage as any,
@@ -86,6 +88,7 @@ async function seed() {
 
   await payload.updateGlobal({
     slug: 'admission-steps',
+    context: { disableRevalidate: true },
     data: {
       sectionTitle: 'Your Journey Starts Here',
       sectionDescription: 'Apply today and take the first step towards your global education.',
@@ -102,6 +105,7 @@ async function seed() {
 
   await payload.updateGlobal({
     slug: 'contact-section',
+    context: { disableRevalidate: true },
     data: {
       sectionTitle: 'Get In Touch',
       description: 'We are here to help with any questions you may have.',
@@ -116,6 +120,60 @@ async function seed() {
         phone: '+20 123 456 7890',
         address: 'New Administrative Capital, Cairo, Egypt'
       }
+    }
+  })
+
+  await payload.updateGlobal({
+    slug: 'header',
+    context: { disableRevalidate: true },
+    data: {
+      topNavItems: [
+        { link: { type: 'custom', url: '#about', label: 'About Us' } },
+        { link: { type: 'custom', url: '#events', label: 'Events' } },
+        { link: { type: 'custom', url: '#careers', label: 'Careers' } },
+      ],
+      navItems: [
+        { link: { type: 'custom', url: '#academics', label: 'Academics' } },
+        { link: { type: 'custom', url: '#admissions', label: 'Admissions' } },
+        { link: { type: 'custom', url: '#campus', label: 'Campus Life' } },
+      ],
+      ctaLink: { label: 'Apply Now', url: '/apply' },
+    }
+  })
+
+  await payload.updateGlobal({
+    slug: 'footer',
+    context: { disableRevalidate: true },
+    data: {
+      contactInfo: {
+        phone: '+20 123 456 7890',
+        address: 'New Administrative Capital, Cairo, Egypt',
+        email: 'info@tkh.edu.eg',
+      },
+      socialLinks: [
+        { platform: 'Facebook', url: '#' },
+        { platform: 'Instagram', url: '#' },
+        { platform: 'LinkedIn', url: '#' },
+        { platform: 'Twitter', url: '#' },
+      ],
+      linkColumns: [
+        {
+          title: 'Discover TKH',
+          links: [
+            { link: { type: 'custom', url: '#about', label: 'About Us' } },
+            { link: { type: 'custom', url: '#partners', label: 'Academic Partners' } },
+            { link: { type: 'custom', url: '#admissions', label: 'Admissions' } },
+          ]
+        },
+        {
+          title: 'Resources',
+          links: [
+            { link: { type: 'custom', url: '#events', label: 'Events' } },
+            { link: { type: 'custom', url: '#news', label: 'News' } },
+            { link: { type: 'custom', url: '#careers', label: 'Careers' } },
+          ]
+        }
+      ],
     }
   })
 
@@ -135,11 +193,34 @@ async function seed() {
 
   await payload.create({
     collection: 'partners',
-    data: { name: 'Coventry University', type: 'university', logo: coventryLogo as any, image: coventryBg as any, color: 'navy', order: 1 }
+    data: { 
+      name: 'Coventry University', 
+      type: 'university', 
+      logo: coventryLogo as any, 
+      image: coventryBg as any, 
+      color: 'navy', 
+      order: 1,
+      stats: [
+        { value: '4th', label: 'Top UK University' },
+        { value: '50+', label: 'Undergraduate\nPrograms' },
+        { value: '10K+', label: 'Global Students\nNetwork' },
+      ]
+    }
   })
   await payload.create({
     collection: 'partners',
-    data: { name: 'NOVA University Lisbon', type: 'university', logo: novaLogo as any, image: novaBg as any, color: 'novaGreen', order: 2 }
+    data: { 
+      name: 'NOVA University Lisbon', 
+      type: 'university', 
+      logo: novaLogo as any, 
+      image: novaBg as any, 
+      color: 'novaGreen', 
+      order: 2,
+      stats: [
+        { value: '1st', label: 'Top Young University\nin Europe' },
+        { value: '4', label: 'International\nCampuses' },
+      ]
+    }
   })
 
   await payload.create({

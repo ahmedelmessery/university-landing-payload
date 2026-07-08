@@ -73,17 +73,12 @@ export function NewsSlider({ news }: NewsSliderProps) {
         {/* Header */}
         <div className="text-center mb-10">
           <span
-            className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-3"
-            style={{ background: '#273480', letterSpacing: '0.05em' }}
+            className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-3 bg-navy-light tracking-[0.05em]"
           >
             Stay Updated
           </span>
           <h2
-            className="font-bold text-ink mb-3"
-            style={{
-              fontSize: 'clamp(24px, 3vw, 42px)',
-              fontFamily: 'Futura, Trebuchet MS, Arial, sans-serif',
-            }}
+            className="font-bold text-ink mb-3 text-[clamp(24px,3vw,42px)] font-sans"
           >
             Proud News!
           </h2>
@@ -138,20 +133,15 @@ export function NewsSlider({ news }: NewsSliderProps) {
 
                     {/* Category */}
                     <div
-                      className="text-[11px] font-extrabold uppercase tracking-widest mb-3"
-                      style={{ color: catColor, fontFamily: 'Futura, Trebuchet MS, Arial, sans-serif' }}
+                      className="text-[11px] font-extrabold uppercase tracking-widest mb-3 font-sans"
+                      style={{ color: catColor }}
                     >
                       {item.category}
                     </div>
 
                     {/* Title */}
                     <h3
-                      className="font-extrabold text-[#101828] mb-3 group-hover:text-[#E84925] transition-colors line-clamp-3"
-                      style={{
-                        fontSize: 17,
-                        lineHeight: 1.4,
-                        fontFamily: 'Futura, Trebuchet MS, Arial, sans-serif',
-                      }}
+                      className="font-extrabold text-ink mb-3 group-hover:text-orange transition-colors line-clamp-3 text-[17px] leading-[1.4] font-sans"
                     >
                       {item.title}
                     </h3>
@@ -190,8 +180,7 @@ export function NewsSlider({ news }: NewsSliderProps) {
 
           <a
             href="#"
-            className="inline-flex items-center gap-2 text-white font-semibold px-6 py-3 rounded-full hover:opacity-90 transition-all"
-            style={{ background: '#E84925', fontSize: 15 }}
+            className="inline-flex items-center gap-2 text-white font-semibold px-6 py-3 rounded-full hover:opacity-90 transition-all bg-orange text-[15px]"
           >
             Explore Our All News
             <span className="inline-flex items-center justify-center w-6 h-6 bg-white rounded-full">

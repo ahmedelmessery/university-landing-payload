@@ -76,17 +76,12 @@ export function MajorsSlider({ majors }: MajorsSliderProps) {
         {/* Header - Centered */}
         <div className="flex flex-col items-center justify-center text-center mb-16">
           <span
-            className="inline-block text-white text-[12px] font-bold px-5 py-2 rounded-sm mb-5"
-            style={{ background: '#273480', letterSpacing: '0.05em' }}
+            className="inline-block text-white text-[12px] font-bold px-5 py-2 rounded-sm mb-5 bg-navy-light tracking-[0.05em]"
           >
             Choose Your Future
           </span>
           <h2
-            className="font-extrabold text-[#101828] leading-[1.2]"
-            style={{
-              fontSize: 'clamp(32px, 4vw, 46px)',
-              fontFamily: 'Futura, Trebuchet MS, Arial, sans-serif',
-            }}
+            className="font-extrabold text-ink leading-[1.2] text-[clamp(32px,4vw,46px)] font-sans"
           >
             Discover Your Path
             <br />
@@ -162,11 +157,7 @@ export function MajorsSlider({ majors }: MajorsSliderProps) {
                     {/* Bottom text */}
                     <div className="absolute bottom-0 left-0 right-0 p-8 pb-10 z-10">
                       <h3
-                        className="text-white font-extrabold mb-2"
-                        style={{
-                          fontSize: 'clamp(20px, 2vw, 26px)',
-                          fontFamily: 'Futura, Trebuchet MS, Arial, sans-serif',
-                        }}
+                        className="text-white font-extrabold mb-2 text-[clamp(20px,2vw,26px)] font-sans"
                       >
                         {major.title}
                       </h3>

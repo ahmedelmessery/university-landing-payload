@@ -48,17 +48,12 @@ export function AdmissionStepsSection({ data }: AdmissionStepsSectionProps) {
           {/* Left Column (Text & CTA) */}
           <div className="md:col-span-4 flex flex-col items-start pt-4">
             <span
-              className="inline-block text-white text-[12px] font-bold px-6 py-2 rounded-sm mb-6 shadow-sm"
-              style={{ background: '#273480', letterSpacing: '0.05em' }}
+              className="inline-block text-white text-[12px] font-bold px-6 py-2 rounded-sm mb-6 shadow-sm bg-navy-light tracking-[0.05em]"
             >
               Take Action
             </span>
             <h2
-              className="font-extrabold text-[#101828] leading-[1.1] mb-5"
-              style={{
-                fontSize: 'clamp(32px, 4vw, 46px)',
-                fontFamily: 'Futura, Trebuchet MS, Arial, sans-serif',
-              }}
+              className="font-extrabold text-ink leading-[1.1] mb-5 text-[clamp(32px,4vw,46px)] font-sans"
             >
               {data?.sectionTitle ?? 'Your Journey Starts Here!'}
             </h2>
@@ -68,8 +63,7 @@ export function AdmissionStepsSection({ data }: AdmissionStepsSectionProps) {
 
             <a
               href={data?.ctaButton?.link ?? '#'}
-              className="inline-flex items-center gap-3 text-white font-bold px-8 py-3.5 rounded-full hover:opacity-90 transition-transform hover:scale-105 active:scale-95 shadow-lg"
-              style={{ background: '#E84925', fontSize: 15 }}
+              className="inline-flex items-center gap-3 text-white font-bold px-8 py-3.5 rounded-full hover:opacity-90 transition-transform hover:scale-105 active:scale-95 shadow-lg bg-orange text-[15px]"
             >
               {data?.ctaButton?.text ?? 'Apply For 2026 Year'}
               <span className="inline-flex items-center justify-center w-7 h-7 bg-white rounded-full">
@@ -96,19 +90,14 @@ export function AdmissionStepsSection({ data }: AdmissionStepsSectionProps) {
                 >
                   {/* Number Badge */}
                   <div
-                    className="w-12 h-12 shrink-0 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md group-hover:scale-110 transition-transform"
-                    style={{
-                      background: '#273480',
-                      fontFamily: 'Futura, Trebuchet MS, Arial, sans-serif',
-                    }}
+                    className="w-12 h-12 shrink-0 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md group-hover:scale-110 transition-transform bg-navy-light font-sans"
                   >
                     {step.stepNumber}
                   </div>
 
                   {/* Title */}
                   <h3
-                    className="font-extrabold text-[#101828] shrink-0 sm:w-48"
-                    style={{ fontSize: 18, fontFamily: 'Futura, Trebuchet MS, Arial, sans-serif' }}
+                    className="font-extrabold text-ink shrink-0 sm:w-48 text-[18px] font-sans"
                   >
                     {step.title}
                   </h3>

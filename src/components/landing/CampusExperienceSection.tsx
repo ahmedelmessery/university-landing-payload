@@ -53,7 +53,7 @@ export function CampusExperienceSection({ data }: CampusExperienceSectionProps) 
 
   // Handle accordion and image animations
   useGSAP(() => {
-    sectionTabs.forEach((_, i) => {
+    sectionTabs.forEach((_: any, i: number) => {
       const el = contentRefs.current[i]
       if (!el) return
       
@@ -79,15 +79,9 @@ export function CampusExperienceSection({ data }: CampusExperienceSectionProps) 
           {/* LEFT — text */}
           <div className="pr-12 lg:pr-24 py-8">
             <h2
-              className="font-bold leading-[1.1] mb-12 text-[#101828]"
-              style={{
-                fontSize: 'clamp(36px, 4.5vw, 52px)',
-                fontFamily: 'Futura, Trebuchet MS, Arial, sans-serif',
-              }}
+              className="font-bold leading-[1.1] mb-12 text-ink text-[clamp(36px,4.5vw,52px)] font-sans"
             >
-              Experience a World–Class
-              <br />
-              Campus
+              {data?.sectionTitle || 'Experience a World-Class Campus'}
             </h2>
 
             {/* Accordion */}
@@ -106,16 +100,10 @@ export function CampusExperienceSection({ data }: CampusExperienceSectionProps) 
                     >
                       {/* CSS-BASED PERFECT PIECE HIGHLIGHT */}
                       <div 
-                        className={`absolute top-0 bottom-0 -left-8 w-1.5 rounded-full overflow-hidden transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-0'}`}
-                        style={{ background: 'linear-gradient(to bottom, #E84925, #2B3B7E)' }}
+                        className={`absolute top-0 bottom-0 -left-8 w-1.5 rounded-full overflow-hidden transition-opacity duration-300 bg-gradient-to-b from-[#E84925] to-[#2B3B7E] ${isActive ? 'opacity-100' : 'opacity-0'}`}
                       />
                       <h3
-                        className="font-bold transition-colors duration-300"
-                        style={{
-                          color: isActive ? '#101828' : '#8A94A6',
-                          fontSize: 22,
-                          fontFamily: 'Futura, Trebuchet MS, Arial, sans-serif',
-                        }}
+                        className={`font-bold transition-colors duration-300 text-[22px] font-sans ${isActive ? 'text-ink' : 'text-[#8A94A6]'}`}
                       >
                         {tab.title}
                       </h3>
@@ -133,8 +121,7 @@ export function CampusExperienceSection({ data }: CampusExperienceSectionProps) 
                           {/* Show button only inside the active content */}
                           <div className="mt-8">
                             <button
-                              className="inline-flex items-center gap-2 text-white font-semibold px-6 py-2.5 rounded-full hover:opacity-90 transition-all"
-                              style={{ background: '#E84925', fontSize: 14 }}
+                              className="inline-flex items-center gap-2 text-white font-semibold px-6 py-2.5 rounded-full hover:opacity-90 transition-all bg-[#E84925] text-[14px]"
                             >
                               Know More About TKH
                               <span className="inline-flex items-center justify-center w-6 h-6 bg-white rounded-full ml-1">
@@ -158,10 +145,7 @@ export function CampusExperienceSection({ data }: CampusExperienceSectionProps) 
           <div className="relative flex justify-end h-full w-full">
             {/* Slanted image wrapper */}
             <div
-              className="relative w-full h-[600px] overflow-hidden"
-              style={{
-                clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0% 100%)',
-              }}
+              className="relative w-full h-[600px] overflow-hidden [clip-path:polygon(15%_0,100%_0,100%_100%,0%_100%)]"
             >
               <div ref={imageRef} className="absolute inset-0 w-full h-full">
                 <Image
@@ -176,15 +160,13 @@ export function CampusExperienceSection({ data }: CampusExperienceSectionProps) 
 
             {/* Blue Floating Badge */}
             <div
-              className="absolute bottom-0 left-[5%] px-10 py-8 text-white shadow-2xl"
-              style={{ background: '#2B3B7E' }}
+              className="absolute bottom-0 left-[5%] px-10 py-8 text-white shadow-2xl bg-navy-light"
             >
-              <div className="text-white/90 text-sm font-semibold mb-2 tracking-wider">Students</div>
+              <div className="text-white/90 text-sm font-semibold mb-2 tracking-wider">Campus Area</div>
               <div
-                className="font-bold leading-none flex items-baseline gap-1"
-                style={{ fontSize: 56, fontFamily: 'Futura, Trebuchet MS, Arial, sans-serif' }}
+                className="font-bold leading-none flex items-baseline gap-1 text-[56px] font-sans"
               >
-                20k<span className="text-[40px] font-light leading-none">+</span>
+                {data?.campusAreaSize || '50k'} <span className="text-[40px] font-light leading-none">m²</span>
               </div>
             </div>
           </div>

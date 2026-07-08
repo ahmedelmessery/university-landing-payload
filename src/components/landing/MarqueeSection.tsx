@@ -82,12 +82,11 @@ export function MarqueeSection() {
   )
 
   const newPartnerText = (
-    <span 
-      className="text-white font-extrabold text-3xl sm:text-4xl tracking-widest uppercase" 
-      style={{ fontFamily: 'Futura, Trebuchet MS, Arial, sans-serif', fontWeight: '800' }}
-    >
+      <h2
+        className="text-[clamp(42px,5vw,72px)] text-white leading-tight font-sans font-extrabold"
+      >
       NEW PARTNERSHIPS SOON
-    </span>
+    </h2>
   )
 
   return (

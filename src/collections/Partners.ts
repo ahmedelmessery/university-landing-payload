@@ -72,5 +72,24 @@ export const Partners: CollectionConfig = {
       label: 'Display Order',
       defaultValue: 0,
     },
+    {
+      name: 'stats',
+      type: 'array',
+      label: 'Partner Statistics',
+      fields: [
+        {
+          name: 'value',
+          type: 'text',
+          required: true,
+          label: 'Stat Value (e.g., 5 stars)',
+        },
+        {
+          name: 'label',
+          type: 'textarea',
+          required: true,
+          label: 'Stat Description',
+        },
+      ],
+    },
   ],
 }

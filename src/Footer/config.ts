@@ -10,20 +10,33 @@ export const Footer: GlobalConfig = {
   },
   fields: [
     {
-      name: 'navItems',
+      name: 'contactInfo',
+      type: 'group',
+      fields: [
+        { name: 'phone', type: 'text', label: 'Phone Number' },
+        { name: 'address', type: 'textarea', label: 'Address' },
+        { name: 'email', type: 'text', label: 'Email Address' },
+      ],
+    },
+    {
+      name: 'socialLinks',
       type: 'array',
       fields: [
-        link({
-          appearances: false,
-        }),
+        { name: 'platform', type: 'select', options: ['Facebook', 'Instagram', 'LinkedIn', 'Twitter'] },
+        { name: 'url', type: 'text', label: 'URL' },
       ],
-      maxRows: 6,
-      admin: {
-        initCollapsed: true,
-        components: {
-          RowLabel: '@/Footer/RowLabel',
+    },
+    {
+      name: 'linkColumns',
+      type: 'array',
+      fields: [
+        { name: 'title', type: 'text', required: true, label: 'Column Title' },
+        {
+          name: 'links',
+          type: 'array',
+          fields: [link({ appearances: false })],
         },
-      },
+      ],
     },
   ],
   hooks: {

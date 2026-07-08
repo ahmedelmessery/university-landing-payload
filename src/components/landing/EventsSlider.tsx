@@ -54,17 +54,12 @@ export function EventsSlider({ events }: EventsSliderProps) {
         {/* Header */}
         <div className="flex flex-col items-center justify-center text-center mb-12">
           <span
-            className="inline-block text-white text-[12px] font-bold px-6 py-2 mb-4"
-            style={{ background: '#273480', letterSpacing: '0.05em' }}
+            className="inline-block text-white text-[12px] font-bold px-6 py-2 mb-4 bg-navy-light tracking-[0.05em]"
           >
             Events
           </span>
           <h2
-            className="font-extrabold text-[#101828] leading-[1.2]"
-            style={{
-              fontSize: 'clamp(32px, 4vw, 46px)',
-              fontFamily: 'Futura, Trebuchet MS, Arial, sans-serif',
-            }}
+            className="font-extrabold text-ink leading-[1.2] text-[clamp(32px,4vw,46px)] font-sans"
           >
             Don't Miss Our
             <br />
@@ -131,11 +126,7 @@ export function EventsSlider({ events }: EventsSliderProps) {
                     {/* Content (Bottom Left) */}
                     <div className="absolute bottom-0 left-0 right-0 p-10 pb-12 z-10">
                       <h3
-                        className="font-extrabold text-white mb-3"
-                        style={{
-                          fontSize: 'clamp(22px, 2.5vw, 28px)',
-                          fontFamily: 'Futura, Trebuchet MS, Arial, sans-serif',
-                        }}
+                        className="font-extrabold text-white mb-3 text-[clamp(22px,2.5vw,28px)] font-sans"
                       >
                         {event.title}
                       </h3>
@@ -173,8 +164,7 @@ export function EventsSlider({ events }: EventsSliderProps) {
 
           <a
             href="#"
-            className="inline-flex items-center gap-3 text-white font-bold px-8 py-3.5 rounded-full hover:opacity-90 transition-transform hover:scale-105 active:scale-95"
-            style={{ background: '#E84925', fontSize: 15 }}
+            className="inline-flex items-center gap-3 text-white font-bold px-8 py-3.5 rounded-full hover:opacity-90 transition-transform hover:scale-105 active:scale-95 bg-orange text-[15px]"
           >
             Explore Our All Events
             <span className="inline-flex items-center justify-center w-7 h-7 bg-white rounded-full">

@@ -1,63 +1,17 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-
-const FOOTER_COLUMNS = [
-  {
-    title: 'Universities',
-    links: [
-      { label: 'Coventry University', href: '#' },
-      { label: 'NOVA University', href: '#' },
-    ],
-  },
-  {
-    title: 'Study',
-    links: [
-      { label: 'Undergraduate', href: '#' },
-      { label: 'Postgraduate', href: '#' },
-      { label: 'Continuing Education', href: '#' },
-    ],
-  },
-  {
-    title: 'Campus Life',
-    links: [
-      { label: 'Student Life', href: '#' },
-      { label: 'Services', href: '#' },
-      { label: 'Support', href: '#' },
-    ],
-  },
-  {
-    title: 'Admissions',
-    links: [
-      { label: 'Entry Criteria', href: '#' },
-      { label: 'Tuition Fees', href: '#' },
-      { label: 'How to Apply', href: '#' },
-    ],
-  },
-  {
-    title: 'About TKH',
-    links: [
-      { label: 'Overview', href: '#' },
-      { label: 'Board of Trustees', href: '#' },
-      { label: 'TKH Campus', href: '#' },
-      { label: 'Work With TKH', href: '#' },
-      { label: 'FAQs', href: '#' },
-    ],
-  },
-  {
-    title: 'International Students',
-    links: [
-      { label: 'Policies & Regulations', href: '#' },
-      { label: 'Alumni', href: '#' },
-      { label: 'News', href: '#' },
-      { label: 'Events', href: '#' },
-    ],
-  },
-]
+import { getCachedGlobal } from '@/utilities/getGlobals'
+import type { Footer as FooterType } from '@/payload-types'
+import { CMSLink } from '@/components/Link'
 
 export async function Footer() {
+  const footerData: FooterType = await getCachedGlobal('footer', 1)()
+  
+  const { contactInfo, socialLinks, linkColumns } = footerData
+
   return (
-    <footer style={{ background: 'linear-gradient(135deg, #1E2749, #101828, #27202F)' }}>
+    <footer className="bg-gradient-to-br from-[#1E2749] via-[#101828] to-[#27202F]">
       {/* Main footer */}
       <div className="max-w-[1280px] mx-auto px-6 lg:px-16 py-16">
         
@@ -76,14 +30,12 @@ export async function Footer() {
                 />
                 <div className="flex flex-col justify-center mt-0.5">
                   <span 
-                    className="font-extrabold text-[17px] lg:text-[21px] leading-[1.1] tracking-tight text-white" 
-                    style={{ fontFamily: 'Futura, Trebuchet MS, Arial, sans-serif' }}
+                    className="font-extrabold text-[17px] lg:text-[21px] leading-[1.1] tracking-tight text-white font-sans" 
                   >
                     The Knowledge Hub
                   </span>
                   <span 
-                    className="font-medium text-[15px] lg:text-[18px] leading-[1.1] tracking-tight text-white/90" 
-                    style={{ fontFamily: 'Futura, Trebuchet MS, Arial, sans-serif' }}
+                    className="font-medium text-[15px] lg:text-[18px] leading-[1.1] tracking-tight text-white/90 font-sans" 
                   >
                     Universities
                   </span>
@@ -106,28 +58,27 @@ export async function Footer() {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="mt-0.5 shrink-0">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.49 12 19.79 19.79 0 0 1 1.13 3.42 2 2 0 0 1 3.12 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16h1" />
                 </svg>
-                <span>19940 , +20 123 456 789</span>
+                <span>{contactInfo?.phone || '19940 , +20 123 456 789'}</span>
               </div>
               <div className="flex items-start gap-3 text-white/70 text-sm">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="mt-0.5 shrink-0">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                   <circle cx="12" cy="10" r="3" />
                 </svg>
-                <span className="max-w-[250px]">New Administrative Capital, Residential Area 7, R7, Cairo Governorate</span>
+                <span className="max-w-[250px]">{contactInfo?.address || 'New Administrative Capital, Residential Area 7, R7, Cairo Governorate'}</span>
               </div>
               <div className="flex items-start gap-3 text-white/70 text-sm">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="mt-0.5 shrink-0">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                   <polyline points="22,6 12,13 2,6" />
                 </svg>
-                <span>hello@tkh.edu.eg</span>
+                <span>{contactInfo?.email || 'hello@tkh.edu.eg'}</span>
               </div>
             </div>
 
             <Link
               href="#admissions"
-              className="inline-flex items-center gap-2 text-white font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition-all"
-              style={{ background: '#E84925', fontSize: 13 }}
+              className="inline-flex items-center gap-2 text-white font-semibold px-5 py-2.5 rounded-full hover:opacity-90 transition-all bg-[#E84925] text-[13px]"
             >
               Apply Now
               <span className="inline-flex items-center justify-center w-5 h-5 bg-white rounded-full">
@@ -154,8 +105,7 @@ export async function Footer() {
                 className="flex-1 px-3 py-2 text-[13px] font-medium text-[#101828] outline-none bg-transparent placeholder-gray-500"
               />
               <button
-                className="text-white text-[13px] font-bold px-6 py-2 rounded-full hover:opacity-90 transition-opacity h-9"
-                style={{ background: '#E84925' }}
+                className="text-white text-[13px] font-bold px-6 py-2 rounded-full hover:opacity-90 transition-opacity h-9 bg-[#E84925]"
               >
                 Search
               </button>
@@ -163,30 +113,26 @@ export async function Footer() {
 
             {/* Social links */}
             <div className="flex gap-3">
-              {[
-                {
-                  icon: <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />,
-                  label: 'Facebook',
-                },
-                {
-                  icon: <><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></>,
-                  label: 'Instagram',
-                },
-                {
-                  icon: <><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></>,
-                  label: 'LinkedIn',
-                },
-              ].map(({ icon, label }) => (
-                <button
-                  key={label}
-                  aria-label={label}
-                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/70 hover:bg-white/15 hover:text-white transition-all"
-                >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    {icon}
-                  </svg>
-                </button>
-              ))}
+              {(socialLinks || []).map((social, i) => {
+                let icon;
+                if (social.platform === 'Facebook') icon = <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />;
+                else if (social.platform === 'Instagram') icon = <><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></>;
+                else if (social.platform === 'LinkedIn') icon = <><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></>;
+                else if (social.platform === 'Twitter') icon = <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />;
+                
+                return (
+                  <a
+                    key={i}
+                    href={social.url || '#'}
+                    aria-label={social.platform || 'Social Media'}
+                    className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/70 hover:bg-white/15 hover:text-white transition-all"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      {icon}
+                    </svg>
+                  </a>
+                )
+              })}
             </div>
           </div>
         </div>
@@ -196,23 +142,17 @@ export async function Footer() {
 
         {/* BOTTOM SECTION — Nav Links */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-          {FOOTER_COLUMNS.map((col) => (
-            <div key={col.title}>
+          {(linkColumns || []).map((col: any, idx: number) => (
+            <div key={idx}>
               <h4
-                className="text-white font-bold text-[15px] mb-5"
-                style={{ fontFamily: 'Futura, Trebuchet MS, Arial, sans-serif' }}
+                className="text-white font-bold text-[15px] mb-5 font-sans"
               >
                 {col.title}
               </h4>
               <ul className="space-y-3">
-                {col.links.map((l) => (
-                  <li key={l.label}>
-                    <Link
-                      href={l.href}
-                      className="text-white/70 text-[13px] hover:text-white transition-colors"
-                    >
-                      {l.label}
-                    </Link>
+                {(col.links || []).map((linkObj: any, i: number) => (
+                  <li key={i}>
+                    <CMSLink {...linkObj.link} className="text-white/70 text-[13px] hover:text-white transition-colors" />
                   </li>
                 ))}
               </ul>

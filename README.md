@@ -35,9 +35,13 @@ A pixel-perfect university landing page built with Next.js 16, Payload CMS 3, an
    - Visit http://localhost:3000/admin
    - Sign up with email/password
 
-5. **Add content:**
-   - Fill in Globals: Landing Hero, Campus Experience, Admission Steps, Contact Section
-   - Add items to Collections: Majors, Events, Testimonials, News, Partners
+5. **Seed the database (Optional but recommended):**
+   - Run `npm run seed` to automatically populate the 12 sections with default data.
+
+6. **Add/Edit content:**
+   - Log into the Payload Admin panel at http://localhost:3000/admin.
+   - Fill in Globals: Landing Hero, Campus Experience, Admission Steps, Contact Section, Header, Footer.
+   - Add items to Collections: Majors, Events, Testimonials, News, Partners.
 
 6. **View landing page:**
    - Visit http://localhost:3000/landing
@@ -115,10 +119,15 @@ src/
 - Type-safe content models
 - Media management with uploads
 
-### Data Flow
+### Data Flow & Rendering Strategy
 
+- **CMS Data Layer**: The `src/lib/cms/getLandingPageData.ts` file acts as the single source of truth for fetching Payload globals and collections.
+- **Caching**: Next.js `unstable_cache` and `cache()` are used to memoize CMS database queries, preventing redundant MongoDB calls during the same request cycle. In production, this data is cached heavily since landing pages rarely change by the minute.
+- **Dynamic Revalidation**: Payload provides hooks to trigger revalidation of Next.js paths whenever content is updated in the Admin panel.
+- **Architecture**:
 ```
-CMS → Data Layer (src/lib/cms) → Server Components → Client Components
+Payload Admin (Content Update) → Trigger Revalidation → Next.js ISR/SSG Cache Updated
+CMS → Data Layer (getLandingPageData) → Server Components (page.tsx) → Client Components (GSAP/Animations)
 ```
 
 ## 🔧 Available Scripts

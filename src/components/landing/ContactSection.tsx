@@ -31,17 +31,12 @@ export function ContactSection({ data }: ContactSectionProps) {
           {/* LEFT */}
           <div className="pt-4">
             <span
-              className="inline-block text-white text-[12px] font-bold px-6 py-2 rounded-sm mb-6 shadow-sm"
-              style={{ background: '#273480', letterSpacing: '0.05em' }}
+              className="inline-block text-white text-[12px] font-bold px-6 py-2 rounded-sm mb-6 shadow-sm bg-navy-light tracking-[0.05em]"
             >
               Take Action
             </span>
             <h2
-              className="font-extrabold text-[#101828] leading-[1.1] mb-5"
-              style={{
-                fontSize: 'clamp(32px, 4vw, 46px)',
-                fontFamily: 'Futura, Trebuchet MS, Arial, sans-serif',
-              }}
+              className="font-extrabold text-ink leading-[1.1] mb-5 text-[clamp(32px,4vw,46px)] font-sans"
             >
               {data?.sectionTitle ?? 'Get In Touch!'}
             </h2>
@@ -56,7 +51,7 @@ export function ContactSection({ data }: ContactSectionProps) {
             {/* Phone */}
             <div className="flex items-center justify-between border-b border-gray-300 pb-6">
               <label className="text-gray-500 text-[15px] shrink-0">
-                Your Phone Number <span className="text-[#E84925]">*</span>
+                Your Phone Number <span className="text-orange">*</span>
               </label>
               <input
                 type="tel"
@@ -64,15 +59,14 @@ export function ContactSection({ data }: ContactSectionProps) {
                 onChange={(e) => setForm({ ...form, phone: e.target.value })}
                 placeholder=""
                 required
-                className="text-[#101828] font-bold text-[16px] bg-transparent outline-none text-right placeholder-[#101828] flex-1"
-                style={{ fontFamily: 'Futura, Trebuchet MS, Arial, sans-serif' }}
+                className="text-ink font-bold text-[16px] bg-transparent outline-none text-right placeholder-ink flex-1 font-sans"
               />
             </div>
 
             {/* Email */}
             <div className="flex items-center justify-between border-b border-gray-300 pb-6">
               <label className="text-gray-500 text-[15px] shrink-0">
-                Your Email <span className="text-[#E84925]">*</span>
+                Your Email <span className="text-orange">*</span>
               </label>
               <input
                 type="email"
@@ -80,15 +74,14 @@ export function ContactSection({ data }: ContactSectionProps) {
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
                 placeholder=""
                 required
-                className="text-[#101828] font-bold text-[16px] bg-transparent outline-none text-right placeholder-[#101828] flex-1"
-                style={{ fontFamily: 'Futura, Trebuchet MS, Arial, sans-serif' }}
+                className="text-ink font-bold text-[16px] bg-transparent outline-none text-right placeholder-ink flex-1 font-sans"
               />
             </div>
 
             {/* Message */}
             <div className="flex items-center justify-between border-b border-gray-300 pb-6">
               <label className="text-gray-500 text-[15px] shrink-0">
-                Your Message <span className="text-[#E84925]">*</span>
+                Your Message <span className="text-orange">*</span>
               </label>
               <input
                 type="text"
@@ -96,8 +89,7 @@ export function ContactSection({ data }: ContactSectionProps) {
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 placeholder=""
                 required
-                className="text-[#101828] font-bold text-[16px] bg-transparent outline-none text-right placeholder-[#101828] flex-1"
-                style={{ fontFamily: 'Futura, Trebuchet MS, Arial, sans-serif' }}
+                className="text-ink font-bold text-[16px] bg-transparent outline-none text-right placeholder-ink flex-1 font-sans"
               />
             </div>
 
@@ -106,8 +98,7 @@ export function ContactSection({ data }: ContactSectionProps) {
               <button
                 type="submit"
                 disabled={status === 'sending'}
-                className="inline-flex items-center gap-3 text-white font-bold px-8 py-3.5 rounded-full hover:opacity-90 transition-transform hover:scale-105 active:scale-95 shadow-lg disabled:opacity-60"
-                style={{ background: '#E84925', fontSize: 15 }}
+                className="inline-flex items-center gap-3 text-white font-bold px-8 py-3.5 rounded-full hover:opacity-90 transition-transform hover:scale-105 active:scale-95 shadow-lg disabled:opacity-60 bg-orange text-[15px]"
               >
                 {status === 'sending'
                   ? 'Sending…'

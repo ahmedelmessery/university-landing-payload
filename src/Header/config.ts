@@ -10,8 +10,25 @@ export const Header: GlobalConfig = {
   },
   fields: [
     {
+      name: 'topNavItems',
+      type: 'array',
+      label: 'Top Bar Links',
+      fields: [
+        link({
+          appearances: false,
+        }),
+      ],
+      admin: {
+        initCollapsed: true,
+        components: {
+          RowLabel: '@/Header/RowLabel',
+        },
+      },
+    },
+    {
       name: 'navItems',
       type: 'array',
+      label: 'Main Navigation Links',
       fields: [
         link({
           appearances: false,
@@ -24,6 +41,15 @@ export const Header: GlobalConfig = {
           RowLabel: '@/Header/RowLabel',
         },
       },
+    },
+    {
+      name: 'ctaLink',
+      type: 'group',
+      label: 'Call to Action Button',
+      fields: [
+        { name: 'label', type: 'text', defaultValue: 'Apply Now' },
+        { name: 'url', type: 'text', defaultValue: '#admissions' },
+      ],
     },
   ],
   hooks: {

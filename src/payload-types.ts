@@ -884,6 +884,13 @@ export interface Partner {
   link?: string | null;
   color?: ('orange' | 'navy' | 'novaGreen' | 'ink') | null;
   order?: number | null;
+  stats?:
+    | {
+        value: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1538,6 +1545,13 @@ export interface PartnersSelect<T extends boolean = true> {
   link?: T;
   color?: T;
   order?: T;
+  stats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -1807,6 +1821,26 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface Header {
   id: string;
+  topNavItems?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: string | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: string | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+        };
+        id?: string | null;
+      }[]
+    | null;
   navItems?:
     | {
         link: {
@@ -1827,6 +1861,10 @@ export interface Header {
         id?: string | null;
       }[]
     | null;
+  ctaLink?: {
+    label?: string | null;
+    url?: string | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1836,23 +1874,41 @@ export interface Header {
  */
 export interface Footer {
   id: string;
-  navItems?:
+  contactInfo?: {
+    phone?: string | null;
+    address?: string | null;
+    email?: string | null;
+  };
+  socialLinks?:
     | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: string | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: string | Post;
-              } | null);
-          url?: string | null;
-          label: string;
-        };
+        platform?: ('Facebook' | 'Instagram' | 'LinkedIn' | 'Twitter') | null;
+        url?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  linkColumns?:
+    | {
+        title: string;
+        links?:
+          | {
+              link: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?:
+                  | ({
+                      relationTo: 'pages';
+                      value: string | Page;
+                    } | null)
+                  | ({
+                      relationTo: 'posts';
+                      value: string | Post;
+                    } | null);
+                url?: string | null;
+                label: string;
+              };
+              id?: string | null;
+            }[]
+          | null;
         id?: string | null;
       }[]
     | null;
@@ -1962,6 +2018,20 @@ export interface ContactSection {
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
+  topNavItems?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        id?: T;
+      };
   navItems?:
     | T
     | {
@@ -1976,6 +2046,12 @@ export interface HeaderSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  ctaLink?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1985,17 +2061,37 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
-  navItems?:
+  contactInfo?:
     | T
     | {
-        link?:
+        phone?: T;
+        address?: T;
+        email?: T;
+      };
+  socialLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
+  linkColumns?:
+    | T
+    | {
+        title?: T;
+        links?:
           | T
           | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                  };
+              id?: T;
             };
         id?: T;
       };
